@@ -26,7 +26,7 @@
         </tr>
         @foreach ($informasis as $informasi)
         <tr>
-            <td></td>
+            <td>{{$informasi->kategori->nama}}</td>
             <td>{{$informasi->judul}}</td>
             <td>{{$informasi->ringkasan}}</td>
             <td>{{$informasi->isi}}</td>

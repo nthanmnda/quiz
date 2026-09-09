@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\informasi;
+use App\Models\Kategori;
 
 class InformasiController extends Controller
 {
@@ -17,10 +18,13 @@ class InformasiController extends Controller
 
     public function create()
     {
-        return view('informasi.create');
+        $kategoris = Kategori::all();
+        return view('informasi.create', [
+            'kategoris' => $kategoris
+        ]);
     }
 
-    public function simpan()
+    public function simpan(Request $request)
     {
         $informasi = new Informasi();
         $informasi->kategori_id = $request->get('kategori_id');
@@ -43,12 +47,17 @@ class InformasiController extends Controller
         }
     }
     
-    public function ubah()
+    public function ubah(Informasi $informasi)
     {
-        return view('informasi.ubah', ['informasi'=>$informasi]);
+        $kategoris = Kategori::all();
+
+        return view('informasi.ubah', [
+            'informasi' => $informasi,
+            'kategoris' => $kategoris
+        ]);
     }
 
-    public function update()
+    public function update(Request $request)
     {
         $informasi = Informasi::find($request->get('id'));
         $informasi->kategori_id = $request->get('kategori_id');

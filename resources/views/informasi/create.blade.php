@@ -11,12 +11,46 @@
         <p>{{ $error }}</p>
     @endforeach
     @endif
-    <form method="POST" action="{{ url('/simpan-kategori')}}">
+    <form method="POST" action="{{ url('/simpan-informasi')}}">
         @csrf
         <table>
             <tr>
-                <td>Nama</td>
-                <td> <input type="text" name="nama"/></td>
+                <td>Kategori</td>
+                <td>
+                    <select name="kategori_id">
+                    <option>Pilih Kategori</option>
+                    @foreach ($kategoris as $kategori)
+                        <option value="{{ $kategori->id }}">
+                            {{ $kategori->nama }}
+                        </option>
+                    @endforeach
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <td>Judul</td>
+                <td><input type="text" name="judul"></td>
+            </tr>
+            <tr>
+                <td>Ringkasan</td>
+                <td><input type="text" name="ringkasan"></td>
+            </tr>
+            <tr>
+                <td>Isi</td>
+                <td><textarea name="isi"></textarea></td>
+            </tr>
+            <tr>
+                <td>Sumber</td>
+                <td><input type="text" name="sumber"></td>
+            </tr>
+            <tr>
+                <td>Status</td>
+                <td>
+                    <select name="status">
+                        <option value="draft">Draft</option>
+                        <option value="published">Published</option>
+                    </select>
+                </td>
             </tr>
             <tr>
                 <td colspan="2">
