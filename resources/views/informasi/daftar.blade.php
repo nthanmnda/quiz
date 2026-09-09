@@ -34,8 +34,11 @@
             <td>{{$informasi->status}}</td>
             <td>
                 <form method="POST" action="{{ route('informasi.hapus', $informasi) }}" 
+                style="display: inline;"
                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus informasi {{ $informasi->nama }}?');"> 
-                @method('DELETE') @csrf <input type="submit" value="Hapus"/> </form><a href="{{ route('informasi.ubah', $informasi)}}">[UBAH]</a>
+                @method('DELETE') @csrf <input type="submit" value="Hapus"/> </form> 
+                &nbsp <a href="{{ route('informasi.ubah', $informasi)}}">Ubah</a> 
+                &nbsp <a href="{{ route('informasi.show', $informasi) }}">Detail</a>
             </td>
         </tr>
         @endforeach

@@ -38,7 +38,7 @@ class InformasiController extends Controller
         return redirect('daftar-informasi')->with('success', 'Informasi berhasil disimpan!');
     }
 
-    public function hapus()
+    public function hapus(Informasi $informasi)
     {
         try { 
             $informasi->delete(); return redirect('daftar-informasi') ->with('success', 'Informasi berhasil dihapus!'); 
@@ -70,5 +70,12 @@ class InformasiController extends Controller
         $informasi->save();
 
         return redirect('daftar-informasi')->with('success', 'Informasi berhasil disimpan!');
+    }
+
+    public function show(Informasi $informasi)
+    {
+        return view('informasi.show', [
+            'informasi' => $informasi
+        ]);
     }
 }
