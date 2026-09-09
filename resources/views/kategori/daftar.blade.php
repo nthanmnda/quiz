@@ -7,10 +7,8 @@
 </head>
 <body>
 
-   @if(session('success')) <script> alert("{{ session('success') }}"); </script> 
-   @endif 
-   @if(session('error')) <script> alert("{{ session('error') }}"); </script> 
-   @endif
+   @if(session('success')) <script> alert("{{ session('success') }}"); </script>@endif 
+   @if(session('error')) <script> alert("{{ session('error') }}"); </script> @endif
 
     <a href="{{ url('/tambah-kategori') }}">
         Tambah Kategori
@@ -19,17 +17,12 @@
     <table border="1"> 
         <tr>
             <th>Nama</th>
-            <th>Deskripsi</th>
+            <th>Aksi</th>
         </tr>
         @foreach ($kategoris as $kategori)
         <tr>
             <td>{{$kategori->nama }}</td>
             <td>
-                <!-- <form method="POST" action="{{ route('kategori.hapus', $kategori)}}">
-                    @method('DELETE')
-                    @csrf 
-                    <input type="submit" value="Hapus"/>
-                </form> -->
                 <form method="POST" action="{{ route('kategori.hapus', $kategori) }}" 
                 onsubmit="return confirm('Apakah Anda yakin ingin menghapus kategori {{ $kategori->nama }}?');"> 
                 @method('DELETE') @csrf <input type="submit" value="Hapus"/> </form>
